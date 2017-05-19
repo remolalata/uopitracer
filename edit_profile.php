@@ -124,7 +124,7 @@
               <div class="col-md-4 col-sm-4">
                 <div class="form-group" id="mobile_error">
                   <label>Mobile</label>
-                  <input type="text" name="mobile_number" id="mobile_number" class="form-control" value="<?php echo $row_prof['mobile_number']; ?>" placeholder="(63) 977-000-0000" title="e.g. (63) 977-000-0000" pattern="^\([0-9]{3}\)\s[0-9]{3}-[0-9]{3}-[0-9]{4}$" onkeypress="return numbersonly(event)">
+                  <input type="text" name="mobile_number" id="mobile_number" class="form-control" value="<?php echo $row_prof['mobile_number']; ?>" onkeypress="return numbersonly(event)">
                 </div>
               </div>
             </div>
@@ -247,10 +247,15 @@
   </div>
 </section>
 
-<script src="admin/plugins/input-mask/jquery.inputmask.js"></script>
+<!-- <script src="admin/plugins/input-mask/jquery.inputmask.js"></script>
 <script src="admin/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="admin/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="admin/plugins/input-mask/jquery.inputmask.extensions.js"></script> -->
+<script src="js/inputmask.js"></script>
 <script>
+$(document).ready(function() {
+  $("#mobile_number").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
+})
+
 function validate_int(myEvento) {
   if ((myEvento.charCode >= 48 && myEvento.charCode <= 57) || myEvento.keyCode == 9 || myEvento.keyCode == 10 || myEvento.keyCode == 13 || myEvento.keyCode == 8 || myEvento.keyCode == 116 || myEvento.keyCode == 46 || (myEvento.keyCode <= 40 && myEvento.keyCode >= 37)) {
     dato = true;
@@ -260,38 +265,38 @@ function validate_int(myEvento) {
   return dato;
 }
 
-function phone_number_mask() {
-  var myMask = "(63) ___-___-____";
-  var myCaja = document.getElementById("mobile_number");
-  var myText = "";
-  var myNumbers = [];
-  var myOutPut = ""
-  var theLastPos = 1;
-  myText = myCaja.value;
-  //get numbers
-  for (var i = 0; i < myText.length; i++) {
-    if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
-      myNumbers.push(myText.charAt(i));
-    }
-  }
-  //write over mask
-  for (var j = 0; j < myMask.length; j++) {
-    if (myMask.charAt(j) == "_") { //replace "_" by a number
-      if (myNumbers.length == 0)
-        myOutPut = myOutPut + myMask.charAt(j);
-      else {
-        myOutPut = myOutPut + myNumbers.shift();
-        theLastPos = j + 1; //set caret position
-      }
-    } else {
-      myOutPut = myOutPut + myMask.charAt(j);
-    }
-  }
-  document.getElementById("mobile_number").value = myOutPut;
-  document.getElementById("mobile_number").setSelectionRange(theLastPos, theLastPos);
-}
-
-document.getElementById("mobile_number").onkeypress = validate_int;
-document.getElementById("mobile_number").onkeyup = phone_number_mask;
+// function phone_number_mask() {
+//   var myMask = "(63) ___-___-____";
+//   var myCaja = document.getElementById("mobile_number");
+//   var myText = "";
+//   var myNumbers = [];
+//   var myOutPut = ""
+//   var theLastPos = 1;
+//   myText = myCaja.value;
+//   //get numbers
+//   for (var i = 0; i < myText.length; i++) {
+//     if (!isNaN(myText.charAt(i)) && myText.charAt(i) != " ") {
+//       myNumbers.push(myText.charAt(i));
+//     }
+//   }
+//   //write over mask
+//   for (var j = 0; j < myMask.length; j++) {
+//     if (myMask.charAt(j) == "_") { //replace "_" by a number
+//       if (myNumbers.length == 0)
+//         myOutPut = myOutPut + myMask.charAt(j);
+//       else {
+//         myOutPut = myOutPut + myNumbers.shift();
+//         theLastPos = j + 1; //set caret position
+//       }
+//     } else {
+//       myOutPut = myOutPut + myMask.charAt(j);
+//     }
+//   }
+//   document.getElementById("mobile_number").value = myOutPut;
+//   document.getElementById("mobile_number").setSelectionRange(theLastPos, theLastPos);
+// }
+//
+// document.getElementById("mobile_number").onkeypress = validate_int;
+// document.getElementById("mobile_number").onkeyup = phone_number_mask;
 </script>
 <?php include'php/footer.php'; ?>
