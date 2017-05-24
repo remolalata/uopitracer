@@ -17,12 +17,12 @@
 
   <div class="box box-success">
 
-    <!--<div class="box-header with-border">
+    <div class="box-header with-border">
       <h3></h3>
       <div class="box-tools pull-right">
-            <span class="pull-right"><a href="">Notify all user</a></span>
+        <a href="php/print_employed_alumni.php" class="btn btn-success btn-sm" target="_blank" data-toggle="tooltip" title="Print Employed Alumni"><i class="fa fa-print"></i></a>
       </div>
-    </div>-->
+    </div>
 
     <div class="box-body">
       <table id="alumniEmployedTbl" class="table table-bordered table-striped">
@@ -54,7 +54,7 @@
           ?>
         </tbody>
       </table>
-      
+
     </div>
   </div>
 
@@ -71,7 +71,7 @@
         <div class="box-body">
             <canvas id="pieChart" style="height:250px"></canvas>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 
@@ -88,7 +88,7 @@
     $temporary = mysqli_num_rows(mysqli_query($conn, "select * from tbl_employment where employment_status='Temporary'"));
     $casual = mysqli_num_rows(mysqli_query($conn, "select * from tbl_employment where employment_status='Casual'"));
     $selfemployed = mysqli_num_rows(mysqli_query($conn, "select * from tbl_employment where employment_status='Self-Employed'"));
-    
+
     if($row_prof['user_level'] == "Co-admin"){
       $regular = mysqli_num_rows(mysqli_query($conn, "select * from tbl_employment where employment_status='Regular/Permanent' and college='".$row_prof['college']."'"));
       $contractual = mysqli_num_rows(mysqli_query($conn, "select * from tbl_employment where employment_status='Contractual' and college='".$row_prof['college']."'"));
@@ -148,4 +148,3 @@
 
 </script>
 <?php include'php/footer.php'; ?>
-      

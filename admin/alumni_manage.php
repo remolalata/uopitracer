@@ -518,7 +518,7 @@ if(isset($_POST['createCourseBtn'])){
 <script src="../js/inputmask.js"></script>
 <script>
   $("#contact_number").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
-  $("#contact_number_e").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
+  
 
   var table = $("#alumniTbl").DataTable({
     "paging": false,
