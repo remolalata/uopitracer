@@ -4,6 +4,8 @@
 <style>
   .no-sort::after { display: none!important; }
   #alumniTbl_filter{display: none;}
+  .form-group{display: block !important; margin-bottom: 15px !important}
+  .modal-body .form-control{display: block !important; width: 100% !important}
 </style>
 
 <?php
@@ -216,7 +218,94 @@ if(isset($_POST['deleteAllBtn'])){
                         <a href="alumni_profile.php?id=<?php echo $row['student_number']; ?>" class="btn btn-success btn-sm" title="View Alumni"><i class="fa fa-eye"></i></a>
                       </td>
                       <td align="center">
-                        <a href="#" class="btn btn-default btn-sm" title="Edit Alumni" data-toggle="modal" data-target="#editModal" data-noo="<?php echo $row['student_number']; ?>"><i class="fa fa-pencil"> </i></a>
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editModal<?php echo $row['student_number']; ?>" data-noo="<?php echo $row['student_number']; ?>"><i class="fa fa-pencil" data-toggle="tooltip" title="Edit Alumni"> </i></a>
+
+                        <div class="modal fade" id="editModal<?php echo $row['student_number']; ?>" tabindex="-1" role="dialog">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Edit Alumni Account</h4>
+                              </div>
+                              <div class="modal-body">
+                                <form method="post" class="form-horizontal" id="editAlumniForm">
+                                  <input type="hidden" name="stud_hdn" value="<?php echo $row['student_number']; ?>">
+                                  <div class="form-group" id="student_number_error_e">
+                                    <label class="col-sm-3 control-label">Student Number</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="student_number" id="student_number_e" class="form-control" value="<?php echo $row['student_number']; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="lastname_error_e">
+                                    <label class="col-sm-3 control-label">Last Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="lastname" id="lastname_e" class="form-control" value="<?php echo $row['lastname']; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="firstname_error_e">
+                                    <label class="col-sm-3 control-label">First Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="firstname" id="firstname_e" class="form-control" value="<?php echo $row['firstname']; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="middlename_error_e">
+                                    <label class="col-sm-3 control-label">Middle Name</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="middlename" id="middlename_e" class="form-control" value="<?php echo $row['middlename']; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="contact_number_error_e">
+                                    <label class="col-sm-3 control-label">Contact Number</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="mobile_number" id="contact_number_e" onkeypress="return numbersonly(event)" class="form-control mobile_number2" value="<?php echo $row['mobile_number']; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="email_error_e">
+                                    <label class="col-sm-3 control-label">Email Address</label>
+                                    <div class="col-sm-9">
+                                      <input type="text" name="email" id="email_e" class="form-control" value="<?php echo $row['email_add']; ?>">
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="course_error_e">
+                                    <label class="col-sm-3 control-label">Course</label>
+                                    <div class="col-sm-9">
+                                      <select name="course" class="form-control" id="select_course_e">
+                                        <option value="">Select</option>
+                                        <?php
+                                          $query2 = mysqli_query($conn, "select * from tbl_courses");
+                                          while($row2 = mysqli_fetch_assoc($query2)){
+                                            ?>
+                                              <option value="<?php echo $row2['coursecode']; ?>" <?php if($row['coursecode'] == $row2['coursecode']){ echo "selected"; } ?> ><?php echo $row2['coursecode']; ?></option>
+                                            <?php
+                                          }
+                                        ?>
+                                      </select>
+                                    </div>
+                                  </div>
+                                  <div class="form-group" id="year_graduated_error_e">
+                                    <label class="col-sm-3 control-label">Year Graduated</label>
+                                    <div class="col-sm-9">
+                                      <select class="form-control" name="year_graduated" id="year_graduated_e">
+                                        <option value="">Select</option>
+                                          <?php
+                                            for($x=2011;$x<=date('Y');$x++){
+                                              ?>
+                                              	<option value='<?php echo $x; ?>' <?php if($row['year_graduated'] == $x){ echo "selected"; } ?>><?php echo $x; ?></option>
+                                              <?php
+                                            }
+                                          ?>
+                                      </select>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" onclick="editAlumniBtn()" class="btn btn-success">Save changes</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                       <td align="center">
                         <?php if($row['status'] == 0){ ?>
@@ -341,26 +430,6 @@ if(isset($_POST['deleteAllBtn'])){
       <div class="modal-footer">
         <button type="reset" class="btn btn-default">Clear</button>
         <button type="button" onclick="addAlumniBtn()" class="btn btn-success">Save changes</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Edit Alumni Account</h4>
-      </div>
-      <div class="modal-body">
-        <form method="post" class="form-horizontal" id="editAlumniForm">
-        <div id="editAlumniBox"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" onclick="editAlumniBtn()" class="btn btn-success">Save changes</button>
         </form>
       </div>
     </div>
@@ -518,7 +587,7 @@ if(isset($_POST['createCourseBtn'])){
 <script src="../js/inputmask.js"></script>
 <script>
   $("#contact_number").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
-  
+  $(".mobile_number2").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
 
   var table = $("#alumniTbl").DataTable({
     "paging": false,
