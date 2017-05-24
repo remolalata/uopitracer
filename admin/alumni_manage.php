@@ -135,7 +135,7 @@ if(isset($_POST['deleteAllBtn'])){
     <div class="box-body">
       <div class="row" style="margin-bottom: 10px">
         <div class="col-md-12 text-right">
-          Search: 
+          Search:
           <select id="course" class="form-control" style="width: auto; display: inline-block">
             <option value="">Select Course</option>
             <?php
@@ -150,7 +150,7 @@ if(isset($_POST['deleteAllBtn'])){
           <select id="batch" class="form-control" style="width: auto; display: inline-block">
             <option value="">Select Batch</option>
             <?php
-              for ($i=2011; $i <= date('Y'); $i++) { 
+              for ($i=2011; $i <= date('Y'); $i++) {
                 ?>
                   <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                 <?php
@@ -247,7 +247,7 @@ if(isset($_POST['deleteAllBtn'])){
           </table>
         </div>
       </div>
-      
+
     </div>
 
   </div>
@@ -413,7 +413,7 @@ if(isset($_POST['deleteAllBtn'])){
         <h4 class="modal-title">Create Course</h4>
       </div>
       <div class="modal-body">
-        <form method="post">   
+        <form method="post">
         <div class="form-group">
           <label class="control-label">College</label>
             <select name="college" class="form-control">
@@ -494,7 +494,7 @@ if(isset($_POST['deleteAlumni'])){
   $hdn_no = $_POST['student_number_hdn'];
 
   mysqli_query($conn, "update tbl_alumni set status=0 where student_number='".$hdn_no."'");
-    
+
   $_SESSION['alert'] = 2;
   header("Location: alumni_manage.php");
 }
@@ -515,7 +515,11 @@ if(isset($_POST['createCourseBtn'])){
 ?>
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="../js/inputmask.js"></script>
 <script>
+  $("#contact_number").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
+  $("#contact_number_e").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
+
   var table = $("#alumniTbl").DataTable({
     "paging": false,
     "searching": true,
@@ -623,5 +627,3 @@ if(isset($_POST['createCourseBtn'])){
 
 
 <?php include'php/footer.php'; ?>
-      
-
