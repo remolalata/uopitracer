@@ -5,9 +5,9 @@ function validateEmail(email) {
 
 function numbersonly(e){
   var unicode=e.charCode? e.charCode : e.keyCode
-  if (unicode!=8){ 
+  if (unicode!=8){
     if (unicode<48||unicode>57)
-      return false 
+      return false
   }
 }
 
@@ -119,7 +119,7 @@ function addAlumniBtn(){
 
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert(errorThrown); 
+      alert(errorThrown);
     }
    });
 }
@@ -221,7 +221,7 @@ function editAlumniBtn(){
 
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert(errorThrown); 
+      alert(errorThrown);
     }
    });
 }
@@ -311,7 +311,7 @@ function addCourseBtn(){
 				$("#coursename_error_a").removeClass("has-error");
 		    	$("#coursename_error_a label").html("Course Name");
 			}
-	    	
+
 
 			if(error_d.length == 0){
 				document.getElementById("addCourseForm").submit();
