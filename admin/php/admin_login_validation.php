@@ -4,8 +4,8 @@ session_start();
 require 'db_connection.php';
 //field variables
 $username=$_POST['username'];
-// $password=md5($_POST['password']);
-$password=$_POST['password'];
+$password=md5($_POST['password']);
+// $password=$_POST['password'];
 
 //query
 $select="SELECT * from tbl_admin WHERE username='$username' and password='$password'";
