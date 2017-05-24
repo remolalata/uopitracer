@@ -5,12 +5,12 @@
 			</footer>
 		</div>
 
-	
+
 	<script src="dist/js/app.min.js"></script>
-	
+
 	<script>
     $(function () {
-      
+
       $("#alumniUpdatedTbl").DataTable();
       $("#courseTbl").DataTable();
       $("#alumniEmployedTbl").DataTable();
@@ -66,6 +66,7 @@
       };
       xmlhttp.open("GET", "php/ajax/editAlumni.php?q=" + noo, true);
       xmlhttp.send();
+			$("#contact_number_e").mask("(+63) 999-999-9999",{placeholder:"(+63) 000-000-0000"});
     });
 
     function changeCourse(){
@@ -92,16 +93,16 @@
       xmlhttp.send();
     });
 
-    $('#select-all').click(function(event) {   
+    $('#select-all').click(function(event) {
       if(this.checked) {
         // Iterate each checkbox
         $(':checkbox').each(function() {
-            this.checked = true;                        
+            this.checked = true;
         });
-      }else { // Iterate each checkbox 
-        $(":checkbox").each(function() { 
-          this.checked = false; 
-        }); 
+      }else { // Iterate each checkbox
+        $(":checkbox").each(function() {
+          this.checked = false;
+        });
       }
     });
 
