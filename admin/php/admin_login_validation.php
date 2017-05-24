@@ -26,7 +26,7 @@ if($record==1)
 		$aemail = $email;
 		$auser_level=$user_level;
 	}
-	
+
 		$_SESSION['id']=$aid;
 		$_SESSION['username']=$ausername;
 		$_SESSION['password']=$apassword;
@@ -40,7 +40,7 @@ if($record==1)
 		mysqli_query($conn, "insert into tbl_admin_logs(name, user_level, action, date) values('$name', '".$auser_level."', 'logged in', '$date')") or die(mysqli_error());
 
 		//open file
-		
+
 		echo"
 		<script type='text/javascript'>
 		open('../dashboard.php','_self');
