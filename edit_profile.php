@@ -178,62 +178,6 @@
             <hr>
 
             <div class="row">
-              <div class="col-md-8 col-sm-8">
-                <div class="form-group" id="secondary_school_error">
-                  <label>Secondary School</label>
-                  <input type="text" name="secondary_school" id="secondary_school" class="form-control" value="<?php echo $row_prof['secondary_school']; ?>" placeholder="Secondary School">
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="form-group" id="secondary_year_graduated_error">
-                  <label>Year Graduated</label>
-                  <select class="form-control" name="secondary_year_graduated" id="secondary_year_graduated">
-                  <option value="">Select</option>
-                    <?php
-                      for($x=1995;$x<=2013;$x++){
-                        ?>
-                          <option value='<?php echo $x; ?>' <?php if($row_prof['secondary_year_graduated'] == $x){ echo "selected"; } ?> <?php if($row_prof['year_graduated']-6 < $x ){echo "disabled";} ?>>
-                            <?php echo $x; ?>
-                          </option>
-                        <?php
-                      }
-                    ?>
-                </select>
-                </div>
-              </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
-              <div class="col-md-8 col-sm-8">
-                <div class="form-group" id="primary_school_error">
-                  <label>Primary School</label>
-                  <input type="text" name="primary_school" id="primary_school" class="form-control" value="<?php echo $row_prof['primary_school']; ?>" placeholder="Primary School">
-                </div>
-              </div>
-              <div class="col-md-4 col-sm-4">
-                <div class="form-group" id="primary_year_graduated_error">
-                  <label>Year Graduated</label>
-                  <select class="form-control" name="primary_year_graduated" id="primary_year_graduated">
-                  <option value="">Select</option>
-                    <?php
-                      for($x=1995;$x<=2013;$x++){
-                        ?>
-                          <option value='<?php echo $x; ?>' <?php if($row_prof['primary_year_graduated'] == $x){ echo "selected"; } ?> <?php if($row_prof['year_graduated']-2 < $x ){echo "disabled";} ?>>
-                            <?php echo $x; ?>
-                          </option>
-                        <?php
-                      }
-                    ?>
-                </select>
-                </div>
-              </div>
-            </div>
-
-            <hr>
-
-            <div class="row">
               <div class="col-md 3 col-md-offset-9 text-right" style="padding-right: 15px">
                 <button type="button" onclick="editProfileBtn()" class="btn btn-success">Update Profile</button>
               </div>
