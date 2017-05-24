@@ -98,14 +98,14 @@ if(isset($_SESSION['alert']) && $_SESSION['alert'] == 3){
             </section>
           </div>
         </div>
-      
+
         <section class="content">
           <div class="row">
             <div class="col-md-9 col-md-offset-1">
               <div class="box box-success">
                 <div class="box-body">
                   <form method="post" enctype="multipart/form-data">
-                    
+
                   <div class="col-md-3">
                     <input type="hidden" name="img" value="<?php echo $row2['user_image']; ?>">
                     <img src="<?php echo $row2['user_image']; ?>" id="image_upload_preview" width="160" height="160" class="img-circle" alt="User Image"><br><br>
@@ -121,12 +121,12 @@ if(isset($_SESSION['alert']) && $_SESSION['alert'] == 3){
                     <div class="form-group">
                       <label for="lastname">Last Name</label>
                       <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $row2['lastname']; ?>">
-                    </div>  
+                    </div>
 
                     <div class="form-group">
                       <label for="username">Username</label>
                       <input type="text" class="form-control" id="username" name="username" value="<?php echo $row2['username']; ?>">
-                    </div>  
+                    </div>
 
                     <div class="form-group">
                       <label for="username">College</label>
@@ -141,7 +141,7 @@ if(isset($_SESSION['alert']) && $_SESSION['alert'] == 3){
                           }
                         ?>
                       </select>
-                    </div>  
+                    </div>
 
                     <div class="text-right">
                       <button type="submit" name="editAdminBtn" class="btn btn-success" style="margin-right: 15px;" >Update</button>
@@ -165,7 +165,8 @@ if(isset($_SESSION['alert']) && $_SESSION['alert'] == 3){
       <div class="box-header with-border">
             <h3></h3>
             <div class="box-tools pull-right">
-              <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addAdminModal">Add Admin</a>
+              <a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addAdminModal" target="_blank">Add Admin</a>
+              <a href="php/admin_users.php" class="btn btn-success btn-sm" data-toggle="tooltip" title="Print Users"><i class="fa fa-print"></i></a>
             </div>
           </div>
       <div class="box-body">
@@ -200,14 +201,14 @@ if(isset($_SESSION['alert']) && $_SESSION['alert'] == 3){
               }
             ?>
           </tbody>
-          
+
         </table>
       </div>
     </div>
   </section>
 
 <?php } ?>
- 
+
 <div class="modal fade" tabindex="-1" role="dialog" id="addAdminModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -282,7 +283,3 @@ if(isset($_SESSION['alert']) && $_SESSION['alert'] == 3){
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 
 <?php include'php/footer.php'; ?>
-
-
-
-
